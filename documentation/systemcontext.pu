@@ -1,0 +1,11 @@
+@startuml C4_Elements
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+Person(personAlias, "Person", "Somebody managing stock and products")
+
+System(systemAlias, "Best Before Application", "Application to manage stock and products")
+System_Ext(emailSystemAlias, "Email System", "Sends emails with stock updates to users")
+
+Rel(personAlias, systemAlias, "Adds products to stock, manages stock")
+Rel_R(systemAlias, emailSystemAlias, "sends emails using")
+@enduml
