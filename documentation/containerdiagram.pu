@@ -23,7 +23,6 @@ System_Boundary(application, applicationName) {
     AzureFunction(functionTrigger, "Stock Updates", "Timed Trigger")
 
     Rel_L(functionTrigger, cosmosDbAlias, "Checks stock")
-
 }
 
 System_Ext(emailSystemAlias, emailSystemName, emailSystemDesc)
