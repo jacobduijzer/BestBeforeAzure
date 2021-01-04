@@ -5,7 +5,7 @@
 Person(personAlias, personName, personDesc)
 
 System(systemAlias, applicationName, "Application to manage stock and products")
-System_Ext(emailSystemAlias, emailSystemName, emailSystemDesc
+System_Ext(emailSystemAlias, emailSystemName, emailSystemDesc)
 
 Rel(personAlias, systemAlias, "Adds products to stock, manages stock")
 Rel_R(systemAlias, emailSystemAlias, "sends emails using")
