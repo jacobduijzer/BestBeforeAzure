@@ -9,7 +9,7 @@
 
 AzureFunction(functionTrigger, "Stock Updates", "Timed Trigger")
 Component(getProductsQuery, "GetProductsQuery", "GetProducts Query Handler", "Gets products with stock")
-Component(productsService, "ProductsService", "Products Service", "The authentication logic")
+Component(productsService, productsServiceName, productsServiceTech, productsServiceDesc)
 AzureCosmosDb(cosmosDbAlias, "Products & Stock Database", "SQL Api")
 
 Rel_Back(functionTrigger, getProductsQuery, "Delivers")
@@ -17,6 +17,7 @@ Rel_Back(getProductsQuery, productsService, "Delivers")
 Rel_Back(productsService, cosmosDbAlias, "Delivers")
 
 System_Ext(emailSystemAlias, emailSystemName, emailSystemDesc
+
 Rel(functionTrigger, emailSystemAlias, "Uses")
 
 @enduml

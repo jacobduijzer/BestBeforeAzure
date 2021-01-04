@@ -2,4 +2,9 @@
 !define applicationName "Best Before Application"
 !define personName "User"
 !define personDesc "Person managing stock and products"
+!define emailSystemName "Email System"
+!define emailSystemDesc "Sends emails with stock updates to users"
+!define productsServiceName "ProductsService"
+!define productsServiceDesc "Logic for managing products and stock"
+!define productsServiceTech "C# Service"
 @enduml
