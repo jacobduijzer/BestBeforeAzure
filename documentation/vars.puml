@@ -1,3 +1,5 @@
+@startuml vars
 !define applicationName "Best Before Application"
 !define personName "User"
 !define personDesc "Person managing stock and products"
+@enduml
