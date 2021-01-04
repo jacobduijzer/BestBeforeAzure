@@ -1,11 +1,34 @@
 @startuml C4_Elements
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!define AzurePuml https://raw.githubusercontent.com/RicardoNiepel/Azure-PlantUML/master/dist
+!includeurl AzurePuml/AzureCommon.puml
+!includeurl AzurePuml/AzureC4Integration.puml
+!includeurl AzurePuml/Compute/AzureFunction.puml
+!includeurl AzurePuml/Databases/all.puml
+!includeurl AzurePuml/DevOps/AzureRepos.puml
+!includeurl AzurePuml/DevOps/AzurePipelines.puml
+!includeurl AzurePuml/Management/AzureResourceGroups.puml
+!includeurl AzurePuml/Containers/AzureWebAppForContainers.puml
 
-Person(personAlias, "Person", "Somebody managing stock and products")
 
-System(systemAlias, "Best Before Application", "Application to manage stock and products")
+Person(personAlias, "Person", "Person managing stock and products")
+
+Boundary(application, "Best Before Application") {
+
+    AzureWebAppForContainers(webService, "Web Application", "WebApp for Containers", "Frontend to manage products and stock")
+
+    AzureCosmosDb(cosmosDbAlias, "Products & Stock Database", "SQL Api")
+
+    AzureFunction(functionTrigger, "Stock Updates", "Timed Trigger")
+
+    Rel_L(functionTrigger, cosmosDbAlias, "Checks stock")
+
+}
+
 System_Ext(emailSystemAlias, "Email System", "Sends emails with stock updates to users")
 
-Rel(personAlias, systemAlias, "Adds products to stock, manages stock")
-Rel_R(systemAlias, emailSystemAlias, "sends emails using")
+Rel(personAlias, webService, "Adds products to stock, manages stock")
+Rel(webService, cosmosDbAlias, "Storing products and stock")
+Rel_R(functionTrigger, emailSystemAlias, "Sends stock updates")
+
 @enduml
