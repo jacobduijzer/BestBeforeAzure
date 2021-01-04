@@ -1,5 +1,5 @@
 @startuml C4_Elements
-!include vars.puml
+!include https://raw.githubusercontent.com/jacobduijzer/BestBeforeAzure/main/documentation/vars.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 
 Person(personAlias, personName, personDesc)
