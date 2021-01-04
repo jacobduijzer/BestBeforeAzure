@@ -14,7 +14,7 @@
 
 Person(personAlias, personName, personDesc)
 
-Boundary(application, applicationName) {
+System_Boundary(application, applicationName) {
 
     AzureWebAppForContainers(webService, "Web Application", "WebApp for Containers", "Frontend to manage products and stock")
 
