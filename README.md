@@ -6,16 +6,16 @@ As I have multiple members in my household with the celiac disease we have an ex
 
 The system contains two major components, the web application itself and an external system to send e-mail updates to the users. The diagram looks like this:
 
-![System Context Diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/jacobduijzer/BestBeforeAzure/main/documentation/systemcontext.pu)
+![System Context Diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/jacobduijzer/BestBeforeAzure/main/documentation/assets/systemcontext.pu)
 
 ## Container Diagram
 
-![Container Diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/jacobduijzer/BestBeforeAzure/main/documentation/containerdiagram.pu)
+![Container Diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/jacobduijzer/BestBeforeAzure/main/documentation/assets/containerdiagram.pu)
 
 ## Web Application - Component Diagram
 
-![Component Diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/jacobduijzer/BestBeforeAzure/main/documentation/webapp-componentdiagram.pu)
+![Component Diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/jacobduijzer/BestBeforeAzure/main/documentation/assets/webapp-componentdiagram.pu)
 
 ## Stock Updates - Component Diagram
 
-![Component Diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/jacobduijzer/BestBeforeAzure/main/documentation/stockupdates-componentdiagram.pu)
+![Component Diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/jacobduijzer/BestBeforeAzure/main/documentation/assets/stockupdates-componentdiagram.pu)
