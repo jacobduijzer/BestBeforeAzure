@@ -1,5 +1,5 @@
 @startuml C4_Elements
-!include https://github.com/jacobduijzer/BestBeforeAzure/blob/main/documentation/vars.puml
+!include https://raw.githubusercontent.com/jacobduijzer/BestBeforeAzure/main/documentation/vars.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
 !define AzurePuml https://raw.githubusercontent.com/RicardoNiepel/Azure-PlantUML/master/dist
 !includeurl AzurePuml/AzureCommon.puml
