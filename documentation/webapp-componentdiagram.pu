@@ -25,7 +25,7 @@ Component(getProductsQuery, "GetProductsQuery", "GetProducts Query Handler", "Ge
 Component(addProductsCommand, "AddProductCommand", "AddProduct Command Handler", "Add new products with stock")
 Component(updateProductCommand, "UpdateProductCommand", "UpdateProduct Command Handler", "Updates products or stock")
 Component(deleteProductsCommand, "DeleteProductsCommand", "DeleteProducts Command Handler", "Deletes products")
-Component(productsService, productsServiceName, productsServiceTech, productsServiceDesc))
+Component(productsService, productsServiceName, productsServiceTech, productsServiceDesc)
 
 Rel(webapp, productsView, "Uses")
 Rel_Back(productsView, getProductsQuery, "Delivers")
