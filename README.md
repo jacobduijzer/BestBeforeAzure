@@ -8,6 +8,10 @@
 
 ![Container Diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/jacobduijzer/BestBeforeAzure/main/documentation/containerdiagram.pu)
 
-## Component Diagram
+## Web Application - Component Diagram
 
-![Component Diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/jacobduijzer/BestBeforeAzure/main/documentation/componentdiagram.pu)
+![Component Diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/jacobduijzer/BestBeforeAzure/main/documentation/webapp-componentdiagram.pu)
+
+## Stock Updates - Component Diagram
+
+![Component Diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/jacobduijzer/BestBeforeAzure/main/documentation/stockupdates-componentdiagram.pu)
