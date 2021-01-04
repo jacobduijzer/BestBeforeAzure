@@ -9,41 +9,37 @@
 
 Person(personAlias, personName, personDesc)
 
-' Boundary(application, "Best Before Application", "azure web app") {
+Container(webapp, "WebApp", "dotnet core web app with razor pages", "The main interface that the customer interacts with", "csharp")
+Rel(personAlias, webapp, "Uses")
 
-    Container(webapp, "WebApp", "dotnet core web app with razor pages", "The main interface that the customer interacts with", "csharp")
-    Rel(personAlias, webapp, "Uses")
+Component(loginView, "LoginView", "razor page", "Allows users to login into the system")
+Component(loginCommand, "LoginCommand", "Login Command Handler", "Calls the Login Service to authenticate the user")
+Component(loginService, "LoginService", "Login Service", "The authentication logic")
 
-    Component(loginView, "LoginView", "razor page", "Allows users to login into the system")
-    Component(loginCommand, "LoginCommand", "Login Command Handler", "Calls the Login Service to authenticate the user")
-    Component(loginService, "LoginService", "Login Service", "The authentication logic")
+Rel(webapp, loginView, "Uses")
+Rel_D(loginView, loginCommand, "Uses")
+Rel(loginCommand, loginService, "Uses")
 
-    Rel(webapp, loginView, "Uses")
-    Rel_D(loginView, loginCommand, "Uses")
-    Rel(loginCommand, loginService, "Uses")
+Component(productsView, "Products View", "razor page", "Allows users to add products with stock")
+Component(getProductsQuery, "GetProductsQuery", "GetProducts Query Handler", "Gets products with stock")
+Component(addProductsCommand, "AddProductCommand", "AddProduct Command Handler", "Add new products with stock")
+Component(updateProductCommand, "UpdateProductCommand", "UpdateProduct Command Handler", "Updates products or stock")
+Component(deleteProductsCommand, "DeleteProductsCommand", "DeleteProducts Command Handler", "Deletes products")
+Component(productsService, "ProductsService", "Products Service", "The authentication logic")
 
-    Component(productsView, "Products View", "razor page", "Allows users to add products with stock")
-    Component(getProductsQuery, "GetProductsQuery", "GetProducts Query Handler", "Gets products with stock")
-    Component(addProductsCommand, "AddProductCommand", "AddProduct Command Handler", "Add new products with stock")
-    Component(updateProductCommand, "UpdateProductCommand", "UpdateProduct Command Handler", "Updates products or stock")
-    Component(deleteProductsCommand, "DeleteProductsCommand", "DeleteProducts Command Handler", "Deletes products")
-    Component(productsService, "ProductsService", "Products Service", "The authentication logic")
-
-    Rel(webapp, productsView, "Uses")
-    Rel_Back(productsView, getProductsQuery, "Delivers")
-    Rel(productsView, addProductsCommand, "Uses")
-    Rel(productsView, updateProductCommand, "Uses")
-    Rel(productsView, deleteProductsCommand, "Uses")
-    Rel_Back(getProductsQuery, productsService, "Delivers")
-    Rel(addProductsCommand, productsService, "Uses")
-    Rel(updateProductCommand, productsService, "Uses")
-    Rel(deleteProductsCommand, productsService, "Uses")
-' }
+Rel(webapp, productsView, "Uses")
+Rel_Back(productsView, getProductsQuery, "Delivers")
+Rel(productsView, addProductsCommand, "Uses")
+Rel(productsView, updateProductCommand, "Uses")
+Rel(productsView, deleteProductsCommand, "Uses")
+Rel_Back(getProductsQuery, productsService, "Delivers")
+Rel(addProductsCommand, productsService, "Uses")
+Rel(updateProductCommand, productsService, "Uses")
+Rel(deleteProductsCommand, productsService, "Uses")
 
 AzureCosmosDb(cosmosDbAlias, "Products & Stock Database", "SQL Api")
 Rel(productsService, cosmosDbAlias, "Uses")
 Rel_Back(productsService, cosmosDbAlias, "Delivers")
 Rel(loginService, cosmosDbAlias, "")
-
 
 @enduml

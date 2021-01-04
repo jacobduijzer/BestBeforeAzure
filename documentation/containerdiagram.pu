@@ -26,7 +26,7 @@ System_Boundary(application, applicationName) {
 
 }
 
-System_Ext(emailSystemAlias, "Email System", "Sends emails with stock updates to users")
+System_Ext(emailSystemAlias, emailSystemName, emailSystemDesc)
 
 Rel(personAlias, webService, "Adds products to stock, manages stock")
 Rel(webService, cosmosDbAlias, "Storing products and stock")
