@@ -1,0 +1,49 @@
+@startuml C4_Elements
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+!define AzurePuml https://raw.githubusercontent.com/RicardoNiepel/Azure-PlantUML/master/dist
+!includeurl AzurePuml/AzureCommon.puml
+!includeurl AzurePuml/Databases/all.puml
+!define ICONURL https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/v2.2.0
+!includeurl ICONURL/devicons2/csharp.puml
+
+Person(personAlias, "User", "Person managing stock and products")
+
+Boundary(application, "Best Before Application") {
+
+    Container(webapp, "WebApp", "dotnet core web app with razor pages", "The main interface that the customer interacts with", "csharp")
+    Rel(personAlias, webapp, "Uses")
+
+
+    Component(loginView, "LoginView", "razor page", "Allows users to login into the system")
+    Component(loginCommand, "LoginCommand", "Login Command Handler", "Calls the Login Service to authenticate the user")
+    Component(loginService, "LoginService", "Login Service", "The authentication logic")
+
+    Rel(webapp, loginView, "Uses")
+    Rel(loginView, loginCommand, "Uses")
+    Rel(loginCommand, loginService, "Uses")
+
+    Component(productsView, "Products View", "razor page", "Allows users to add products with stock")
+    Component(getProductsCommand, "GetProductsCommand", "GetProducts Command Handler", "Gets products with stock")
+    Component(addProductsCommand, "AddProductCommand", "AddProduct Command Handler", "Add new products with stock")
+    Component(updateProductCommand, "UpdateProductCommand", "UpdateProduct Command Handler", "Updates products or stock")
+    Component(deleteProductsCommand, "DeleteProductsCommand", "DeleteProducts Command Handler", "Deletes products")
+    Component(productsService, "ProductsService", "Products Service", "The authentication logic")
+
+    Rel(webapp, productsView, "Uses")
+    Rel(productsView, getProductsCommand, "Uses")
+    Rel(productsView, addProductsCommand, "Uses")
+    Rel(productsView, updateProductCommand, "Uses")
+    Rel(productsView, deleteProductsCommand, "Uses")
+    Rel(getProductsCommand, productsService, "Uses")
+    Rel(addProductsCommand, productsService, "Uses")
+    Rel(updateProductCommand, productsService, "Uses")
+    Rel(deleteProductsCommand, productsService, "Uses")
+
+}
+
+AzureCosmosDb(cosmosDbAlias, "Products & Stock Database", "SQL Api")
+Rel(productsService, cosmosDbAlias, "")
+Rel(loginService, cosmosDbAlias, "")
+
+
+@enduml

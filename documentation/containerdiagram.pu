@@ -11,7 +11,7 @@
 !includeurl AzurePuml/Containers/AzureWebAppForContainers.puml
 
 
-Person(personAlias, "Person", "Person managing stock and products")
+Person(personAlias, "User", "Person managing stock and products")
 
 Boundary(application, "Best Before Application") {
 
