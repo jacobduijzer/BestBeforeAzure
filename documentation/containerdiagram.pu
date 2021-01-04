@@ -1,4 +1,5 @@
 @startuml C4_Elements
+!include vars.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 !define AzurePuml https://raw.githubusercontent.com/RicardoNiepel/Azure-PlantUML/master/dist
 !includeurl AzurePuml/AzureCommon.puml
@@ -11,9 +12,9 @@
 !includeurl AzurePuml/Containers/AzureWebAppForContainers.puml
 
 
-Person(personAlias, "User", "Person managing stock and products")
+Person(personAlias, personName, personDesc)
 
-Boundary(application, "Best Before Application") {
+Boundary(application, applicationName) {
 
     AzureWebAppForContainers(webService, "Web Application", "WebApp for Containers", "Frontend to manage products and stock")
 
