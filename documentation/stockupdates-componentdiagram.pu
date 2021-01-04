@@ -16,7 +16,7 @@ Rel_Back(functionTrigger, getProductsQuery, "Delivers")
 Rel_Back(getProductsQuery, productsService, "Delivers")
 Rel_Back(productsService, cosmosDbAlias, "Delivers")
 
-System_Ext(emailSystemAlias, emailSystemName, emailSystemDesc
+System_Ext(emailSystemAlias, emailSystemName, emailSystemDesc)
 
 Rel(functionTrigger, emailSystemAlias, "Uses")
 
