@@ -21,6 +21,7 @@ Pro's
 Con's
 
 - More complex UI (HTML / javascript)
+- No push notifications(?)
 
 ### Mobile Application
 
@@ -28,6 +29,7 @@ Pro's
 
 - Many people have there phones always available
 - Easy scanning of products (barcodes)
+- Push notifications
 
 Con's
 
@@ -38,6 +40,7 @@ Con's
 
 We will use a **web application**. It is just easier and faster to release and maintain.
 
-
 ## Consequences
+
+There will be a need for some kind of email system to send updates about expiring products.
 
