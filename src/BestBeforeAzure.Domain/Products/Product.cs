@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json.Serialization;
 using BestBeforeAzure.Domain.Products.Exceptions;
 using BestBeforeAzure.Domain.SharedKernel;
@@ -10,25 +11,21 @@ namespace BestBeforeAzure.Domain.Products
     {
         public Guid Id { get; private set; }
 
-        [JsonPropertyName("name")]
-        public string Name { get; private set; }
+        [JsonPropertyName("name")] public string Name { get; private set; }
 
-        public Dictionary<DateTime, int> Stock => _stock;
+        public IReadOnlyCollection<Stock> Stock => _stock.AsReadOnly();
 
-        private Dictionary<DateTime, int> _stock = new Dictionary<DateTime, int>();
+        private List<Stock> _stock = new List<Stock>();
 
         public static Product Create(string name)
         {
-            return Create(Guid.NewGuid(), name); ;
+            return Create(Guid.NewGuid(), name);
+            ;
         }
 
         public static Product Create(Guid id, string name)
         {
-            Product product = new Product()
-            {
-                Id = id,
-                Name = name
-            };
+            Product product = new Product() {Id = id, Name = name};
 
             //DomainEvents.Raise<ProductCreated>(new ProductCreated() { Product = product });
 
@@ -37,23 +34,31 @@ namespace BestBeforeAzure.Domain.Products
 
         public void AddStock(Stock stock)
         {
-            if (_stock.ContainsKey(stock.BestBefore.Date))
-                _stock[stock.BestBefore.Date] += stock.Amount;
+            var stockItem = _stock.SingleOrDefault(item => item.BestBefore.Date.Equals(stock.BestBefore.Date));
+            if (stockItem != null)
+            {
+                var newStockItem = stockItem with {Amount = stockItem.Amount + stock.Amount};
+                _stock.Remove(stockItem);
+                _stock.Add(newStockItem);
+            }
             else
-                _stock.Add(stock.BestBefore.Date, stock.Amount);
+                _stock.Add(stock);
 
             //DomainEvents.Raise<StockAdded>(new StockAdded() { Product = product });
         }
 
         public void RemoveStock(Stock stock)
         {
-            if (!_stock.ContainsKey(stock.BestBefore.Date))
+            var stockItem = _stock.SingleOrDefault(item => item.BestBefore.Date.Equals(stock.BestBefore.Date));
+            if (stockItem == null)
                 throw new NoStockWithThisBestBeforeDateException();
 
-            if (_stock[stock.BestBefore.Date] < stock.Amount)
+            if (stockItem.Amount < stock.Amount)
                 throw new NotEnoughStockToRemoveException();
 
-            _stock[stock.BestBefore.Date] -= stock.Amount;
+            var newStockItem = stockItem with {Amount = stockItem.Amount - stock.Amount};
+            _stock.Remove(stockItem);
+            _stock.Add(newStockItem);
 
             //DomainEvents.Raise<StockRemoved>(new StockRemoved() { Product = product });
         }

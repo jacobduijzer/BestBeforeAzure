@@ -30,8 +30,9 @@ namespace BestBeforeAzure.UnitTest.Domain.Products
             sut.AddStock(stock);
 
             // ASSERT
-            sut.Stock.Should().ContainKey(DateTime.Now.Date);
-            sut.Stock[DateTime.Now.Date].Should().Be(1);
+            sut.Stock.Should().HaveCount(1);
+            // sut.Stock.Should().ContainKey(DateTime.Now.Date);
+            // sut.Stock[DateTime.Now.Date].Should().Be(1);
         }
 
         [Theory]

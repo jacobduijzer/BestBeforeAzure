@@ -9,25 +9,22 @@ using BestBeforeAzure.Infrastructure.SharedKernel;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 namespace BestBeforeAzure.Api
 {
     public class Startup
     {
+        private readonly IConfiguration _configuration;
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            _configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -37,8 +34,8 @@ namespace BestBeforeAzure.Api
             services.AddDbContext<BestBeforeDbContext>(options =>
             {
                 options.UseCosmos(
-                    CONN_STRING,                    
-                    "BestBefore");
+                    _configuration["AzureSettings:CosmosDbConnectionString"],
+                    _configuration["AzureSettings:CosmosDbDatabase"]);
             });
             services.AddScoped<IRepository<Product>, Repository<Product>>();
             services.AddMediatR(typeof(AddProductCommand));

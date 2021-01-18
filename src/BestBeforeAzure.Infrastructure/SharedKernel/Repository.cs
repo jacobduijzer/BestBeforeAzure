@@ -35,10 +35,11 @@ namespace BestBeforeAzure.Infrastructure.SharedKernel
                 .ToListAsync()
                 .ConfigureAwait(false);
 
-        public Task<TEntity> FindById(Guid id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<TEntity> FindById(Guid id) =>
+            await _bestBeforeDbContext
+                .Set<TEntity>()
+                .SingleAsync(product => product.Id.Equals(id))
+                .ConfigureAwait(false);
 
         public void Remove(TEntity entity)
         {

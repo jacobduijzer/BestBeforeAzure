@@ -22,7 +22,7 @@ namespace BestBeforeAzure.Api.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> CreateToDoItem([FromBody] string name)
+        public async Task<IActionResult> CreateToDoItem()
         {
             try
             {

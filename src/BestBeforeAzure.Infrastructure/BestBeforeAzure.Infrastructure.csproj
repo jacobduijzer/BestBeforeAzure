@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Products\" />
     <Folder Include="SharedKernel\" />
   </ItemGroup>
   <ItemGroup>

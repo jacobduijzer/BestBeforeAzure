@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BestBeforeAzure.Domain", "BestBeforeAzure.Domain\BestBeforeAzure.Domain.csproj", "{AA6C8237-C8C2-488F-851C-93F5A8404D6C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BestBeforeAzure.Domain", "src\BestBeforeAzure.Domain\BestBeforeAzure.Domain.csproj", "{AA6C8237-C8C2-488F-851C-93F5A8404D6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BestBeforeAzure.UnitTest", "BestBeforeAzure.UnitTest\BestBeforeAzure.UnitTest.csproj", "{80B83DE3-BF1E-4949-8587-A7BDDDA67167}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BestBeforeAzure.UnitTest", "src\BestBeforeAzure.UnitTest\BestBeforeAzure.UnitTest.csproj", "{80B83DE3-BF1E-4949-8587-A7BDDDA67167}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BestBeforeAzure.Application", "BestBeforeAzure.Application\BestBeforeAzure.Application.csproj", "{803CF1F4-9ED9-46E0-937F-DB7946B561DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BestBeforeAzure.Application", "src\BestBeforeAzure.Application\BestBeforeAzure.Application.csproj", "{803CF1F4-9ED9-46E0-937F-DB7946B561DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BestBeforeAzure.Infrastructure", "BestBeforeAzure.Infrastructure\BestBeforeAzure.Infrastructure.csproj", "{D17F1024-C5AA-4E71-9F53-DF1E91F21D04}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BestBeforeAzure.Infrastructure", "src\BestBeforeAzure.Infrastructure\BestBeforeAzure.Infrastructure.csproj", "{D17F1024-C5AA-4E71-9F53-DF1E91F21D04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BestBeforeAzure.Api", "BestBeforeAzure.Api\BestBeforeAzure.Api.csproj", "{2A8616D7-9F7E-4C2E-B075-DA772D559A7A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BestBeforeAzure.Api", "src\BestBeforeAzure.Api\BestBeforeAzure.Api.csproj", "{2A8616D7-9F7E-4C2E-B075-DA772D559A7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
