@@ -26,7 +26,6 @@ namespace BestBeforeAzure.Api.Controllers
         [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAllProducts()
         {
-
             var products = await _mediator
                 .Send(new AllProductsQuery.Query())
                 .ConfigureAwait(false);
@@ -34,7 +33,7 @@ namespace BestBeforeAzure.Api.Controllers
             return Ok(products);
         }
 
-        [HttpPost]
+        [HttpPost("CreateProduct")]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateProduct([FromBody] string name)

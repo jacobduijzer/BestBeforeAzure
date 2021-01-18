@@ -19,15 +19,34 @@ namespace BestBeforeAzure.Api.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost]
+        [HttpPost("AddStock")]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> CreateToDoItem()
+        public async Task<IActionResult> AddStock([FromBody] StockUpdate stockUpdate)
         {
             try
             {
                 await _mediator
-                    .Publish(new AddStockToProductCommand.Command(new Guid("0881330b-0269-42c8-ba90-8df930972b81"), new Stock(10, DateTime.Now.AddYears(1))))
+                    .Publish(new AddStockToProductCommand.Command(stockUpdate))
+                    .ConfigureAwait(false);
+                return Accepted();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
+
+        [HttpPost("UpdateStock")]
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> UpdateStock([FromBody] StockUpdate stockUpdate)
+        {
+            try
+            {
+                await _mediator
+                    .Publish(new UpdateStockCommand.Command(stockUpdate))
                     .ConfigureAwait(false);
                 return Accepted();
             }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using BestBeforeAzure.Domain.Products;
 using BestBeforeAzure.Domain.Products.Exceptions;
@@ -8,7 +7,7 @@ using MediatR;
 
 namespace BestBeforeAzure.Application.Products
 {
-    public class AddStockToProductCommand
+    public class UpdateStockCommand
     {
         public record Command(StockUpdate StockUpdate) : INotification;
 
@@ -28,9 +27,10 @@ namespace BestBeforeAzure.Application.Products
                     .ConfigureAwait(false);
 
                 if (product == null)
-                    throw new ProductNotFoundException($"Product with ID {notification.StockUpdate.ProductId} not found");
+                    throw new ProductNotFoundException(
+                        $"Product with ID {notification.StockUpdate.ProductId} not found");
 
-                product.AddStock(new Stock(notification.StockUpdate.Amount, notification.StockUpdate.BestBefore));
+                product.UpdateStock(new Stock(notification.StockUpdate.Amount, notification.StockUpdate.BestBefore));
 
                 await _productRepository
                     .Update(product)

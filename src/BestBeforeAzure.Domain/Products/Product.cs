@@ -32,6 +32,19 @@ namespace BestBeforeAzure.Domain.Products
             return product;
         }
 
+        public void UpdateStock(Stock stock)
+        {
+            var stockItem = _stock.SingleOrDefault(item => item.BestBefore.Date.Equals(stock.BestBefore.Date));
+            if (stockItem is null)
+                _stock.Add(stock);
+            else
+            {
+                var newStockItem = stockItem with {Amount = stock.Amount};
+                _stock.Remove(stockItem);
+                _stock.Add(newStockItem);
+            }
+        }
+        
         public void AddStock(Stock stock)
         {
             var stockItem = _stock.SingleOrDefault(item => item.BestBefore.Date.Equals(stock.BestBefore.Date));

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using BestBeforeAzure.Domain.Products;
 using BestBeforeAzure.Domain.Products.Exceptions;
 using FluentAssertions;
@@ -31,8 +32,8 @@ namespace BestBeforeAzure.UnitTest.Domain.Products
 
             // ASSERT
             sut.Stock.Should().HaveCount(1);
-            // sut.Stock.Should().ContainKey(DateTime.Now.Date);
-            // sut.Stock[DateTime.Now.Date].Should().Be(1);
+            sut.Stock.First().BestBefore.Date.Should().Be(DateTime.Now.Date);
+            sut.Stock.First().Amount.Should().Be(1);
         }
 
         [Theory]

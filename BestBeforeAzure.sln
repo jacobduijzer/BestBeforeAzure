@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BestBeforeAzure.Infrastruct
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BestBeforeAzure.Api", "src\BestBeforeAzure.Api\BestBeforeAzure.Api.csproj", "{2A8616D7-9F7E-4C2E-B075-DA772D559A7A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BestBeforeAzure.Web", "src\BestBeforeAzure.Web\BestBeforeAzure.Web.csproj", "{2ED716BD-8A95-4E47-BF93-5D9A6928F750}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,5 +88,17 @@ Global
 		{2A8616D7-9F7E-4C2E-B075-DA772D559A7A}.Release|x64.Build.0 = Release|Any CPU
 		{2A8616D7-9F7E-4C2E-B075-DA772D559A7A}.Release|x86.ActiveCfg = Release|Any CPU
 		{2A8616D7-9F7E-4C2E-B075-DA772D559A7A}.Release|x86.Build.0 = Release|Any CPU
+		{2ED716BD-8A95-4E47-BF93-5D9A6928F750}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2ED716BD-8A95-4E47-BF93-5D9A6928F750}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2ED716BD-8A95-4E47-BF93-5D9A6928F750}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2ED716BD-8A95-4E47-BF93-5D9A6928F750}.Debug|x64.Build.0 = Debug|Any CPU
+		{2ED716BD-8A95-4E47-BF93-5D9A6928F750}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2ED716BD-8A95-4E47-BF93-5D9A6928F750}.Debug|x86.Build.0 = Debug|Any CPU
+		{2ED716BD-8A95-4E47-BF93-5D9A6928F750}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2ED716BD-8A95-4E47-BF93-5D9A6928F750}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2ED716BD-8A95-4E47-BF93-5D9A6928F750}.Release|x64.ActiveCfg = Release|Any CPU
+		{2ED716BD-8A95-4E47-BF93-5D9A6928F750}.Release|x64.Build.0 = Release|Any CPU
+		{2ED716BD-8A95-4E47-BF93-5D9A6928F750}.Release|x86.ActiveCfg = Release|Any CPU
+		{2ED716BD-8A95-4E47-BF93-5D9A6928F750}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
