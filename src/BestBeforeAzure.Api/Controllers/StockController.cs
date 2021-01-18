@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using BestBeforeAzure.Application.Products;
-using BestBeforeAzure.Domain.Products;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace BestBeforeAzure.Api.Controllers
 {
@@ -13,10 +14,14 @@ namespace BestBeforeAzure.Api.Controllers
     public class StockController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly ILogger<StockController> _logger;
 
-        public StockController(IMediator mediator)
+        public StockController(
+            IMediator mediator,
+            ILogger<StockController> logger)
         {
             _mediator = mediator;
+            _logger = logger;
         }
 
         [HttpPost("AddStock")]
@@ -24,16 +29,25 @@ namespace BestBeforeAzure.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> AddStock([FromBody] StockUpdate stockUpdate)
         {
-            try
+            using (_logger.BeginScope(new Dictionary<string, object>
             {
-                await _mediator
-                    .Publish(new AddStockToProductCommand.Command(stockUpdate))
-                    .ConfigureAwait(false);
-                return Accepted();
-            }
-            catch (Exception ex)
+                {"ProductId", stockUpdate.ProductId},
+                {"BestBefore", stockUpdate.BestBefore},
+                {"Amount", stockUpdate.Amount}
+            }))
             {
-                return BadRequest();
+                try
+                {
+                    await _mediator
+                        .Publish(new AddStockToProductCommand.Command(stockUpdate))
+                        .ConfigureAwait(false);
+                    return Accepted();
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, ex.Message);
+                    return BadRequest();
+                }
             }
         }
 
@@ -43,17 +57,26 @@ namespace BestBeforeAzure.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UpdateStock([FromBody] StockUpdate stockUpdate)
         {
-            try
+            using (_logger.BeginScope(new Dictionary<string, object>
             {
-                await _mediator
-                    .Publish(new UpdateStockCommand.Command(stockUpdate))
-                    .ConfigureAwait(false);
-                return Accepted();
+                {"ProductId", stockUpdate.ProductId},
+                {"BestBefore", stockUpdate.BestBefore},
+                {"Amount", stockUpdate.Amount}
+            }))
+            {
+                try
+                {
+                    await _mediator
+                        .Publish(new UpdateStockCommand.Command(stockUpdate))
+                        .ConfigureAwait(false);
+                    return Accepted();
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, ex.Message);
+                    return BadRequest();
+                }
             }
-            catch (Exception ex)
-            {
-                return BadRequest();
-            }   
         }
     }
 }

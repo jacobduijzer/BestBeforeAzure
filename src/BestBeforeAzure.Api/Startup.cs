@@ -9,10 +9,13 @@ using BestBeforeAzure.Infrastructure.SharedKernel;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Azure.Cosmos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.ApplicationInsights;
 using Microsoft.OpenApi.Models;
 
 namespace BestBeforeAzure.Api
@@ -20,29 +23,39 @@ namespace BestBeforeAzure.Api
     public class Startup
     {
         private readonly IConfiguration _configuration;
+
         public Startup(IConfiguration configuration)
         {
             _configuration = configuration;
         }
 
-
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<BestBeforeDbContext>(
+                    options =>
+                    {
+                        options.UseCosmos(
+                            _configuration["AzureSettings:CosmosDbConnectionString"],
+                            _configuration["AzureSettings:CosmosDbDatabase"], cosmosOptions =>
+                            {
+                                cosmosOptions.ConnectionMode(ConnectionMode.Gateway);
+                            });
+                    })
+                .AddLogging(options =>
+                {
+                    options.AddConsole();
+                    options.SetMinimumLevel(LogLevel.Trace);
+                    
+                    // hook the Application Insights Provider
+                    options.AddFilter<ApplicationInsightsLoggerProvider>("", LogLevel.Trace);
 
-            services.AddControllers();
-            services.AddDbContext<BestBeforeDbContext>(options =>
-            {
-                options.UseCosmos(
-                    _configuration["AzureSettings:CosmosDbConnectionString"],
-                    _configuration["AzureSettings:CosmosDbDatabase"]);
-            });
-            services.AddScoped<IRepository<Product>, Repository<Product>>();
-            services.AddMediatR(typeof(AddProductCommand));
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "BestBeforeAzure.Api", Version = "v1" });
-            });
+                    // pass the InstrumentationKey provided under the appsettings
+                    options.AddApplicationInsights(_configuration["ApplicationInsights:InstrumentationKey"]);
+                })
+                .AddScoped<IRepository<Product>, Repository<Product>>()
+                .AddMediatR(typeof(AddProductCommand))
+                .AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo {Title = "BestBeforeAzure.Api", Version = "v1"}))
+                .AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
