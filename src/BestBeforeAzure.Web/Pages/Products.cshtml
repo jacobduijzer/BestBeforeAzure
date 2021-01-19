@@ -1,0 +1,71 @@
+@page
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
+@model BestBeforeAzure.Web.Pages.Products
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<!-- Row -->
+<div class="row">
+    <!-- DataTable with Hover -->
+    <div class="col-lg-12">
+        <div class="card mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">DataTables with Hover</h6>
+            </div>
+            <div class="table-responsive p-3">
+                <table class="table align-items-center table-flush table-hover" id="dataTableHover">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Office</th>
+                            <th>Age</th>
+                            <th>Start date</th>
+                            <th>Salary</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Office</th>
+                            <th>Age</th>
+                            <th>Start date</th>
+                            <th>Salary</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                    @foreach (var product in Model.ProductsList)
+                    {
+                        <tr>
+                            <td>@product.Name</td>
+                            <td></td>
+                            <td></td>
+                            <td>@product.Stock.Sum(x => x.Amount)</td>
+                            <td>@product.Stock.Min(x => x.BestBefore.Date)</td>
+                            <td></td>
+                        </tr> 
+                    }
+                    
+                    </tbody>
+            </table>
+        </div>
+    </div>
+  </div>
+</div>
+<!--Row-->
+
+<!-- Page level plugins -->
+<script src="~/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="~/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script>
+  $(document).ready(function () {
+    $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+  });
+</script>
+
+
