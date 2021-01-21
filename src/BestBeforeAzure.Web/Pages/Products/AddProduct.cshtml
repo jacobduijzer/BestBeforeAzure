@@ -1,0 +1,87 @@
+@page
+@model BestBeforeAzure.Web.Pages.Products.AddProduct
+
+@{
+    ViewData["Title"] = "Add Product";
+}
+<div class="col-lg-6">
+    <!-- Form Basic -->
+    <div class="card mb-4">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Product Details</h6>
+        </div>
+        <div class="card-body">
+            <form>
+
+                <!-- product name -->
+                <div class="form-group">
+                    <label for="inputProductName">Product name</label>
+                    <input type="text" class="form-control" id="inputProductName" aria-describedby="productHelp" placeholder="Enter product name">
+                    <small id="productHelp" class="form-text text-muted">
+                        Should be unique (for now).
+                    </small>
+                </div>
+
+                <!-- best before date -->
+                <div class="form-group" id="simple-date3">
+                    <label for="decadeView">Decade View</label>
+                    <div class="input-group date">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-calendar"></i>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" value="01/06/2020" id="decadeView">
+                    </div>
+                </div>
+
+                <!-- stock amount -->
+                <div class="form-group">
+                    <label for="touchSpin1">Simpel TouchSpin</label>
+                    <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+                        <span class="input-group-btn input-group-prepend">
+                            <button class="btn btn-primary bootstrap-touchspin-down" type="button">-</button>
+                        </span><input id="touchSpin1" type="text" class="form-control">
+                        <span class="input-group-btn input-group-append">
+                            <button class="btn btn-primary bootstrap-touchspin-up" type="button">+</button>
+                        </span>
+                    </div>
+                </div>
+
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Page level plugins -->
+<!-- Bootstrap Datepicker -->
+<script src="vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+<!-- Bootstrap Touchspin -->
+<script src="vendor/bootstrap-touchspin/js/jquery.bootstrap-touchspin.js"></script>
+
+<!-- Page level custom scripts -->
+<script>
+    $(document).ready(function () {
+
+      // Bootstrap Date Picker
+      $('#simple-date3 .input-group.date').datepicker({
+        startView: 2,
+        format: 'dd/mm/yyyy',        
+        autoclose: true,     
+        todayHighlight: true,   
+        todayBtn: 'linked',
+      });
+
+      // TouchSpin
+      $('#touchSpin1').TouchSpin({
+        min: 0,
+        max: 100,                
+        boostat: 5,
+        maxboostedstep: 10,        
+        initval: 0
+      });
+
+    });
+  </script>

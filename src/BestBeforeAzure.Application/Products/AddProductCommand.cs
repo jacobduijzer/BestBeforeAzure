@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using BestBeforeAzure.Domain.Products;
 using BestBeforeAzure.Domain.SharedKernel;
@@ -8,9 +9,9 @@ namespace BestBeforeAzure.Application.Products
 {
     public class AddProductCommand
     {
-        public record Command(string Name) : INotification;
+        public record Command(string Name) : IRequest<Guid>;
 
-        public class Handler : INotificationHandler<Command>
+        public class Handler : IRequestHandler<Command, Guid>
         {
             private readonly IRepository<Product> _productRepository;
 
@@ -19,10 +20,11 @@ namespace BestBeforeAzure.Application.Products
                 _productRepository = productRepository;
             }
 
-            public async Task Handle(Command notification, CancellationToken cancellationToken)
+            public async Task<Guid> Handle(Command notification, CancellationToken cancellationToken)
             {
                 var product = Product.Create(notification.Name);
                 await _productRepository.Add(product);
+                return product.Id;
             }
         }
     }

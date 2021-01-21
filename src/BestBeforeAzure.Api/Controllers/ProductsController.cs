@@ -34,14 +34,17 @@ namespace BestBeforeAzure.Api.Controllers
         }
 
         [HttpPost("CreateProduct")]
-        [ProducesResponseType(StatusCodes.Status202Accepted)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateProduct([FromBody] string name)
         {
             try
             {
-                await _mediator.Publish(new AddProductCommand.Command(name));
-                return Accepted();
+                var productId = await _mediator
+                    .Send(new AddProductCommand.Command(name))
+                    .ConfigureAwait(false);
+                
+                return Created(string.Empty, productId);
             }
             catch (Exception ex)
             {

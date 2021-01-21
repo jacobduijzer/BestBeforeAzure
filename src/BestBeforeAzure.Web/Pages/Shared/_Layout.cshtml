@@ -8,10 +8,14 @@
     <meta name="author" content="">
     <link href="~/img/logo/logo.png" rel="icon">
     <title>BestBefore - Dashboard</title>
-    <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" >
-    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" >
-    <link href="~/css/ruang-admin.min.css" rel="stylesheet" >
-    <link href="~/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" >
+    <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="~/css/ruang-admin.min.css" rel="stylesheet">
+    <link href="~/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <!-- Bootstrap DatePicker -->
+    <link href="vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <!-- Bootstrap Touchspin -->
+    <link href="vendor/bootstrap-touchspin/css/jquery.bootstrap-touchspin.css" rel="stylesheet">
     <script src="~/vendor/jquery/jquery.min.js"></script>
     <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -40,7 +44,7 @@
     </div>
 
     <li class="nav-item">
-        <a class="nav-link" asp-page="/Products">
+        <a class="nav-link" asp-page="/Products/ProductsPage">
             <i class="fas fa-fw fa-table"></i>
             <span>Products</span>
         </a>
@@ -335,39 +339,39 @@
 
 <!-- Container Fluid-->
 <div class="container-fluid" id="container-wrapper">
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">@ViewData["Title"]</h1>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="./">Home</a>
-        </li>
-        <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
-    </ol>
-</div>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">@ViewData["Title"]</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="./">Home</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
+        </ol>
+    </div>
 
-@RenderBody()
+    @RenderBody()
 
-<!-- Modal Logout -->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelLogout"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabelLogout">Ohh No!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Are you sure you want to logout?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
-                <a href="login.html" class="btn btn-primary">Logout</a>
+    <!-- Modal Logout -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelLogout"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabelLogout">Ohh No!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to logout?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
+                    <a href="login.html" class="btn btn-primary">Logout</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 </div>
 <!---Container Fluid-->
